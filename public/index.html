@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniLinkHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <div class="title">
+            <h1>MiniLinkHub</h1>
+            <p>Welcome to MiniLinkHub - your go-to URL shortening service! Say goodbye to lengthy links and hello to simplicity. Instantly transform cumbersome URLs into concise, shareable links. Our user-friendly platform ensures hassle-free shortening, allowing you to share content effortlessly. With reliability and speed at our core, TinyLink is your key to streamlined online sharing. Join us and experience the power of brevity in every link!</p>
+        </div>
+        <div class="image">
+            <img src="./img.jpg" alt="Internet-Globe">
+        </div>
+    </div>
+    <div class="main">
+        <form id="myForm">
+            <input type="text" name="url" required>
+            <div id="labelline1">Enter your URL here!</div>
+            <button type="submit"><i class="fa-solid fa-diagram-next"></i></button>    
+            <input id="customInput" type="text" placeholder="" name="alias">   
+            <div id="labelline2">Enter custom alias!</div>
+        </form>
+        <button id="custom" type="button" onclick="showInput()"><i class="fa-solid fa-globe"></i> <p>Custom URL</p></button>
+        <h2>New URL</h2>
+        <div class="newurl">
+            <p id="tinyurl"></p>
+            <a href="#" onclick="copyToClipboard()"><i id="copy" class="fa-solid fa-copy"></i></a>
+        </div>
+    </div>
+    <footer>
+        <p>Developed by: CodeCrafters</p>
+        <div class="icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/9e5ba2e3f5.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        fetch('/url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify({
+            "url": formData.get("url")  
+        }),
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const resultParagraph = document.getElementById('tinyurl');
+            resultParagraph.textContent = `http://localhost:8001/${data.shortID}`;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    });
+    </script>
+        <script>
+            function showInput() {
+              var inputElement = document.getElementById('customInput');
+              var labelline2 = document.getElementById('labelline2');
+              var copy = document.getElementById('copy');
+              inputElement.style.display = 'block'; // Set display property to 'block' when button is clicked
+              labelline2.style.display = 'block';
+              copy.style.top = '200px';
+            }
+    </script>  
+    <script>
+        function copyToClipboard() {
+          var content = document.getElementById('tinyurl').innerText;
+          var tempInput = document.createElement('input');
+          tempInput.value = content;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);    
+          alert('Copied to clipboard');
+        }
+    </script>  
+</body>
+</html>

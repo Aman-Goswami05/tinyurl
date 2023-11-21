@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.head{
+    margin-top: 10vh;
+    margin-left: 10vh;
+    height: 40vh;
+    display: flexbox;
+    position: relative;
+}
+
+.head .title{
+    width: 70vh;
+    height: 60%;
+    position: absolute;
+    top: 10vh;
+
+}
+
+.head .title p{
+    text-align: justify;
+}
+
+.image img{
+    position: absolute;
+    right:15vh;
+    width: 60vh;
+    height: 65vh;
+}
+
+.main{
+    position: relative;
+    width: 100vh;
+    height: 40vh;
+    line-height: 7vh;
+    margin-left: 10vh;
+}
+
+.main input{
+    position: relative;
+    top: 0vh;
+    left: 0vh;
+    width: 70vh;
+    height: 50px;
+    outline: none;
+    font-size: 1em;
+    padding: 0 30px;
+    line-height: 80px;
+    border-radius: 10px;
+    background: transparent;
+    border: 2px solid black;
+    transition: 0.1s ease;
+    z-index: 1;
+}
+
+.main form button{
+    display: inline;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.main #labelline1{
+    position: absolute;
+    top: 3px;
+    left: 1vh;
+    font-size: 1em;
+    color: black;
+    padding: 0 15px;
+    margin: 0 20px;
+    transition: 0.2s ease;
+    background-color: white;
+}
+
+.main #labelline2{
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 1vh;
+    font-size: 1em;
+    color: black;
+    padding: 0 15px;
+    margin: 0 20px;
+    transition: 0.2s ease;
+    background-color: white;
+}
+
+.main input:focus + #labelline1,
+.main input:valid + #labelline1{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(-15px,-13px) scale(0.88);
+    z-index: 1;
+}
+
+.main input:focus + #labelline2,
+.main input:valid + #labelline2{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(-15px,-13px) scale(0.88);
+    z-index: 1;
+}
+
+.main .newurl{
+    border: 2px solid black;
+    width: 70vh;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.main .newurl i{
+    position: absolute;
+    top: 115px;
+    right: 250px; 
+    color: black;
+    font-size: 3vh;
+}
+
+.main .newurl p{
+    font-size: 1em;
+    margin-left: 7%;
+    width: 82%;
+    display: inline-block;
+}
+
+.main i{
+    font-size: 3vh;
+    color: black;
+    margin-top: 15px;
+    margin-left: 2vh;
+}
+
+footer{
+    margin-top: 18px;
+    height: 60px;
+    background-color: rgb(58, 57, 57);
+}
+
+footer p{
+    text-align: center;
+    color: white;
+    line-height:30px;
+}
+
+footer i{
+    display: flex;
+    color: white;
+    font-size: 3vh;
+    margin-left: 10px;
+}
+
+footer .icons{
+    position: relative;
+    top: 4px;
+    left: 46%;
+    display: inline-block;
+    margin: auto auto;
+}
+
+#custom{
+    position: absolute;
+    background-color: transparent;
+    border-radius: 10px;
+    height: 50px;
+    background-color: rgb(58, 57, 57);
+    cursor: pointer;
+    display: inline-block;
+    top: 4px;
+    right: 12px;
+}
+
+#custom i{
+    display: inline;
+    color: white;
+    font-size: 17px;
+}
+
+#custom p{
+    display: inline-block;
+    padding-left:3px;
+    padding-right: 14px;
+    font-size: 1.2em;
+    position: relative;
+    top: 0px;
+    color: white;
+}
+
+#customInput{
+    display: none;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
