@@ -198,3 +198,20 @@ footer .icons{
     margin-top: 20px;
     margin-bottom: 15px;
 }
+
+.error-box {
+    display: none;
+    background-color: #ffdddd;
+    border: 1px solid #f44336;
+    color: #f44336;
+    border-radius: 5px;
+    width: 70vh;
+    text-align: center;
+    height: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+  }
+
+  .error-box p {
+    font-size: 1em;
+  }

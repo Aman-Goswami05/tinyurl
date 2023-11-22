@@ -30,6 +30,9 @@
             <p id="tinyurl"></p>
             <a href="#" onclick="copyToClipboard()"><i id="copy" class="fa-solid fa-copy"></i></a>
         </div>
+        <div class="error-box" id="errorBox">
+            <p id="error"></p>
+        </div>    
     </div>
     <footer>
         <p>Developed by: CodeCrafters</p>
@@ -59,9 +62,13 @@
         })
         .then(data => {
             const resultParagraph = document.getElementById('tinyurl');
+            const errorBox = document.getElementById('errorBox');
             if(data.error){
-                resultParagraph.textContent = `${data.error}`;
+                const error = document.getElementById('error');
+                errorBox.style.display = 'block';
+                error.textContent = `${data.error}`;
             }else{
+                errorBox.style.display = 'none';
                 resultParagraph.textContent = `http://localhost:8001/${data.shortID}`;
             }
         })
