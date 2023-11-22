@@ -18,7 +18,7 @@
     </div>
     <div class="main">
         <form id="myForm">
-            <input type="text" name="url" required>
+            <input type="text" name="url">
             <div id="labelline1">Enter your URL here!</div>
             <button type="submit"><i class="fa-solid fa-diagram-next"></i></button>    
             <input id="customInput" type="text" placeholder="" name="alias">   
@@ -59,7 +59,11 @@
         })
         .then(data => {
             const resultParagraph = document.getElementById('tinyurl');
-            resultParagraph.textContent = `http://localhost:8001/${data.shortID}`;
+            if(data.error){
+                resultParagraph.textContent = `${data.error}`;
+            }else{
+                resultParagraph.textContent = `http://localhost:8001/${data.shortID}`;
+            }
         })
         .catch(error => console.error('Error fetching data:', error));
     });

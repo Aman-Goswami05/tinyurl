@@ -54,14 +54,48 @@ class AliasTrie {
 
 const aliasTrie = new AliasTrie();
 
+// Check Alias is already present in the storage
+class BloomFilter {
+    constructor(size, hashFunctions) {
+      this.size = size;
+      this.bitArray = new Array(size).fill(false);
+      this.hashFunctions = hashFunctions;
+    }
+  
+    add(element) {
+      for (const hashFunction of this.hashFunctions) {
+        const hash = hashFunction(element) % this.size;
+        this.bitArray[hash] = true;
+      }
+    }
+    contains(element) {
+      for (const hashFunction of this.hashFunctions) {
+        const hash = hashFunction(element) % this.size;
+        if (!this.bitArray[hash]) {
+          return false; 
+        }
+      }
+      return true;
+    }
+  }
+  
+  const hashFunction1 = (str) => str.length;
+  const hashFunction2 = (str) => str.charCodeAt(0);
+  const bloomFilter = new BloomFilter(20, [hashFunction1, hashFunction2]);
+
 // Generate new short url
 function handleGenerateNewShortURL(req,res){
     const body = req.body;
     if(!body.url) return res.status(400).json({error: 'url is required'});
     var shortID = "";
     if(body.alias){
-        shortID = body.alias;
-        aliasTrie.insert(body.alias,body.url);
+        if(bloomFilter.contains(body.alias))
+            return res.status(400).json({error: 'Alias is already taken!'});
+        else{
+            shortID = body.alias;
+            bloomFilter.add(body.alias);
+            aliasTrie.insert(body.alias,body.url);
+        }
     }else{
         shortID = shortid();
         myMap.set(shortID,body.url);
