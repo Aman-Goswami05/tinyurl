@@ -50,7 +50,8 @@
             'Content-Type': 'application/json', 
         },
         body: JSON.stringify({
-            "url": formData.get("url")  
+            "url": formData.get("url"),
+            "alias":formData.get("alias")  
         }),
         })
         .then(response => {
